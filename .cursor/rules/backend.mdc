@@ -1,0 +1,57 @@
+name: DeepSeek RAG 后端规范
+version: "1.0"
+globs:
+  - "backend/**/*.py"
+triggers:
+  - file_open
+  - file_change
+description: |
+  RAG 服务后端：Python + FastAPI + ChromaDB + DeepSeek embedding/chat。
+  规则结合项目架构要求和 Python 最佳实践，确保生成高质量、结构化和可维护代码。
+
+rules:
+  # 项目架构
+  - 使用 FastAPI 实现 POST /chat 接口，接收 user_query 和 content，返回 JSON 格式 {answer, references}
+  - 使用 embedding 模型建立向量库（使用 Chorma），检索 top_k=3
+  - 使用 chat 模型生成回答
+  - 所有模型统一使用 dashscope，且以 OpenAI SDK 兼容方式调用
+  - 头部设置 api_key（dashscope 替代 openai，调用方式保持兼容 openai sdk）
+  - 遵循模块化结构：embedding.py、retrieval.py、chat.py、main.py（FastAPI app）
+
+  # Python 最佳实践
+  - 遵守 PEP8：snake_case 变量/函数名、模块名全小写、类使用 PascalCase
+  - 为 public 函数添加类型注解和返回类型
+  - 所有外部调用（embedding/chat/数据库）必须处理异常，返回有意义的 HTTP 错误（如 400 输入校验错误）
+  - 使用 logging 记录用户输入和调用输出，不要使用 print()
+  - 为关键路径添加单元测试示例，建议使用 pytest 框架
+  - 配置 `.env` 文件加载敏感信息，如 API Key、FAISS 索引路径
+  - 在 requirements.txt 中锁定版本，示例格式：
+    ```
+    fastapi==0.95.0
+    uvicorn[standard]==0.22.0
+    openai==0.27.0
+    chromadb==1.0.15
+    python-dotenv==1.0.0
+    ```
+
+  # 质量保障
+  - 每个接口返回值必须符合models定义（使用 Pydantic 校验）
+  - 遇到错误时，应提供 clear error message + HTTP 状态
+  - 注释中解释 why 而不是 how（“为什么这么做”）
+  - 标记 TODO 或 FIXME 的地方必须短注解释（e.g. `# TODO: handle long documents`）
+
+  # Cursor 行为指导
+  - 如果 AI 生成不符合命名风格或模块拆分建议，应提示：
+    `请参考项目规则，调整命名或结构`
+  - 遇到复杂逻辑，请 AI 插入单元测试而非省略
+  - 任何对接口、模型、参数、异常代码等核心变更，需先输出该函数的签名和简要说明，再实现内容
+  - 如果生成代码超过 100 行，应拆分成多个模块，由 AI 自动拆成多个函数或文件
+
+  # 文件引用示例
+  # @embedding.py
+  # @retrieval.py
+  # @chat.py
+  # 文件引用示例
+  # @embedding.py
+  # @retrieval.py
+  # @chat.py

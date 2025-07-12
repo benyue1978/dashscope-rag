@@ -1,0 +1,14 @@
+# FastAPI web 框架
+fastapi==0.110.0  # 支持 pydantic 2.x，兼容 Python 3.13
+# ASGI 服务器
+uvicorn[standard]==0.22.0
+# OpenAI 兼容 Dashscope API
+openai>=1.2.0
+# ChromaDB 向量数据库
+chromadb==1.0.15
+# PDF 文本分段
+unstructured==0.16.24
+# 环境变量管理
+python-dotenv==1.0.0
+# Pydantic 数据校验
+pydantic>=2.6.4  # 兼容 Python 3.13 
