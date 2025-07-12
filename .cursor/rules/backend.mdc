@@ -1,11 +1,7 @@
-name: DeepSeek RAG 后端规范
-version: "1.0"
-globs:
-  - "backend/**/*.py"
-triggers:
-  - file_open
-  - file_change
-description: |
+---
+description: backend rules
+alwaysApply: false
+---
   RAG 服务后端：Python + FastAPI + ChromaDB + DeepSeek embedding/chat。
   规则结合项目架构要求和 Python 最佳实践，确保生成高质量、结构化和可维护代码。
 
