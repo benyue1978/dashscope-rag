@@ -1,0 +1,52 @@
+编程IDE
+Claude Code + Kimi K2
+Cursor + Claude-4-Sonnet
+
+RAG - Retrieval Augumented Generation
+
+1. 新建一个项目目录 dashscope_rag
+
+2. 建一个虚拟环境
+python -m venv venv
+
+3. 跟cursor（deepseek）聊一下需求和架构
+
+4. .cursorrules。（可选）
+提示词：联网搜索一下.cursorrules的最佳实践。我想为我这个dashscope rag项目的后端写个.cursorrules。需要既包含项目特定要求，也包含python编程的最佳实践。
+两种cursor rules
+- .cursorrules文件放在项目根目录
+- .cursor/rules/xxx.mdc
+
+5. 用requirements.txt管理依赖，用venv，安装所有依赖
+
+6. 让cursor开始写代码
+
+7. 让cursor总结一下写的代码，写入.md
+
+8. 简化一下实现，后端只需要一个/ask接口，用命令行做embedding
+
+9. 我现在有一个txt，放在 data 目录下，要怎么在命令行里做embedding
+我已经把txt放在data目录下，帮我做embedding
+
+10. 我用.env管理环境变量，要在什么地方放.env，里面写什么key
+
+11. 这是embedding API的示例，按照这个修改
+把dashscope里的API参考贴给cursor
+
+12. embedding已经做完了，帮我写个py脚本测试一下 /ask 接口
+
+13. 如果问的问题，没有从向量数据里找到相关文本，一定要回答我不知道。
+
+你是一个AI助手，从文档里找到相关内容，回答客户问题，如果文档里没有相关内容，你要回答“不知道，文档里没有相关内容”
+用户的问题：{query}
+====
+相关文档内容：{content}
+
+14. 我要用next.js为这个项目做个前端。帮我生成.cursor/rules/frontend.mdc. markdown 格式
+
+15. 生成next.js项目，简单的chat界面，要求显示出reference文档
+
+16. 更新 .gitignore
+
+17. 界面太丑了
+
